@@ -1,10 +1,24 @@
-import { Router } from "express";
-import { registerUser } from "../controllers/user.controller.js";
+import { Router } from "express";                                           // import express !!!
+import { registerUser } from "../controllers/user.controller.js";           // import registerUser function from controller !!!
+import { upload } from "../middlewares/multer.middleware.js";               // import Multer(file upload) from middleware folder!!!
 
 
-const router = Router();
+const router = Router();                                                    // create router object!!!
 
-router.route("/register").post(registerUser)
+router.route("/register").post(                                             //create router with help of route method!!!
+        upload.fields([
+            {
+                name: "avatar", 
+                maxCount: 1
+            }, 
+            {
+                name: "coverImage",
+                maxCount: 1
+            }
+        ]),
+        registerUser,
+)                                
+
 
 
 
