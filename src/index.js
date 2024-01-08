@@ -1,4 +1,4 @@
-// // This is my Second approch for database connection 
+// // This is my Second approach for database connection 
 // require('dotenv').config({path:'./env'})  //require dotenv and config
 
 import dotenv from "dotenv"   //import dotend 
@@ -6,7 +6,7 @@ import connectDB from './db/index.js';
 import { app } from "./app.js";
 //CONFIG DOTENV 
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 
 

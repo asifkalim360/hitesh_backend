@@ -1,10 +1,12 @@
 import { Router } from "express";                                           // import express !!!
-import { registerUser } from "../controllers/user.controller.js";           // import registerUser function from controller !!!
+import { loginUser, logoutUser, registerUser } from "../controllers/user.controller.js";           // import registerUser function from controller !!!
 import { upload } from "../middlewares/multer.middleware.js";               // import Multer(file upload) from middleware folder!!!
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 
 const router = Router();                                                    // create router object!!!
 
+//REGISTRATION ROUTE
 router.route("/register").post(                                             //create router with help of route method!!!
         upload.fields([
             {
@@ -17,7 +19,13 @@ router.route("/register").post(                                             //cr
             }
         ]),
         registerUser,
-)                                
+) 
+
+//LOGIN ROUTE 
+router.route("/login").post(loginUser)
+
+//LOGOUT ROUTE ---> //SECURE ROUTES
+router.route("/logout").post(verifyJWT, logoutUser)
 
 
 
